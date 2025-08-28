@@ -31,6 +31,9 @@ type TokenResponse struct {
 }
 
 func GetToken() {
+	// Clear previous token
+	Token = ""
+
 	method := "GET"
 	body := []byte(``)
 	req, _ := http.NewRequest(method, Host+"/v1.0/token?grant_type=1", bytes.NewReader(body))
