@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil" // 1.15 limitation
 	"log"
 	"net/http"
 )
@@ -27,7 +27,7 @@ func PerformRequest(method string, path string, body []byte) (TuyaResponse, erro
 		return TuyaResponse{}, err
 	}
 	defer resp.Body.Close()
-	bs, _ := io.ReadAll(resp.Body)
+	bs, _ := ioutil.ReadAll(resp.Body)
 	response := string(bs)
 	log.Println("resp:", response)
 
