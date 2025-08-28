@@ -36,10 +36,11 @@ func GetToken() {
 
 	method := "GET"
 	body := []byte(``)
+	client := &http.Client{}
 	req, _ := http.NewRequest(method, Host+"/v1.0/token?grant_type=1", bytes.NewReader(body))
 
 	buildHeader(req, body)
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
 		log.Println(err)
 		return

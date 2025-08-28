@@ -18,10 +18,11 @@ type TuyaResponse struct {
 }
 
 func PerformRequest(method string, path string, body []byte) (TuyaResponse, error) {
+	client := &http.Client{}
 	req, _ := http.NewRequest(method, Host+path, bytes.NewReader(body))
 
 	buildHeader(req, body)
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
 		log.Println(err)
 		return TuyaResponse{}, err
